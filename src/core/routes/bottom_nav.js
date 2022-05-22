@@ -17,7 +17,7 @@ const MainTabs = ({ route }) => {
         tabBarShowLabel: false,
       }}>
       <Tab.Screen
-        initialParams={{ email: route.params.email }}
+        // initialParams={{ email: route.params.email }}
         name="Home"
         component={HomeScreen}
         // options={{
