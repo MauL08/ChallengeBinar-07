@@ -4,8 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 
-const LoginButton = () => {
+const LoginButton = ({ email, password }) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.button}

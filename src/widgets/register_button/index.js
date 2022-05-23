@@ -4,8 +4,9 @@ import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './styles';
 
-const RegisterButton = () => {
+const RegisterButton = ({ email, password }) => {
   const navigation = useNavigation();
+
   return (
     <TouchableOpacity
       style={styles.button}
