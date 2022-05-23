@@ -2,11 +2,15 @@ import { TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import { styles } from './styles';
+
 const RegisterButton = () => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Main')}>
-      <Text>Register</Text>
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() => navigation.navigate('Main')}>
+      <Text style={styles.text}>Register</Text>
     </TouchableOpacity>
   );
 };

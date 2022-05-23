@@ -28,8 +28,10 @@ const RegisterScreen = () => {
           onChangeText={e => setPassword(e)}
         />
         <RegisterButton email={email} password={password} />
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text>Move to Login</Text>
+        <TouchableOpacity
+          style={styles.moveButton}
+          onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.moveButtonText}>Move to Login</Text>
         </TouchableOpacity>
       </View>
     </View>

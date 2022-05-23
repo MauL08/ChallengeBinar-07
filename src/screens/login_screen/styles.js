@@ -34,7 +34,13 @@ export const styles = StyleSheet.create({
     padding: AppConfig.paddingL,
   },
   moveButton: {
+    padding: AppConfig.paddingL,
+    borderRadius: ms(6),
     backgroundColor: AppConfig.buttonColor,
     marginTop: AppConfig.paddingL,
+  },
+  moveButtonText: {
+    fontWeight: 'bold',
+    color: AppConfig.baseColor,
   },
 });
