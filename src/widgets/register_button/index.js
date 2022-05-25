@@ -2,14 +2,29 @@ import { TouchableOpacity, Text, Alert, ActivityIndicator } from 'react-native';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 import { setRegister } from '../../data/slices/userSlice';
 import { styles } from './styles';
 import { setLoading } from '../../data/slices/globalSlice';
 
-const RegisterButton = ({ email, password }) => {
+const RegisterButton = ({ name, email, password, image }) => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.global);
+
+  const saveUserCredentialsToFirebase = (userName, userID, userImage) => {
+    const reference = database().ref('/users');
+    console.log(reference);
+    try {
+      reference.push({
+        name: userName,
+        id: userID,
+        image: userImage,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const formChecker = () => {
     const emailRegEx = /[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-z]/;
@@ -22,8 +37,9 @@ const RegisterButton = ({ email, password }) => {
         dispatch(setLoading(true));
         auth()
           .createUserWithEmailAndPassword(email, password)
-          .then(res => {
-            dispatch(setRegister(res));
+          .then(tokenID => {
+            dispatch(setRegister(tokenID));
+            saveUserCredentialsToFirebase(name, tokenID, image);
             dispatch(setLoading(false));
           })
           .catch(error => {

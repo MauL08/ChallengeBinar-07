@@ -26,12 +26,26 @@ export const styles = StyleSheet.create({
     borderRadius: ms(8),
     padding: AppConfig.paddingL,
   },
-  passwordInputBar: {
-    marginVertical: AppConfig.paddingXL,
+  emailInputBar: {
     width: width - AppConfig.padding2XL,
     borderWidth: ms(1),
     borderRadius: ms(8),
     padding: AppConfig.paddingL,
+    marginTop: AppConfig.paddingXL,
+  },
+  passwordInputBar: {
+    width: width - AppConfig.padding2XL,
+    borderWidth: ms(1),
+    borderRadius: ms(8),
+    padding: AppConfig.paddingL,
+    marginTop: AppConfig.paddingXL,
+  },
+  imageInputBar: {
+    width: width - AppConfig.padding2XL,
+    borderWidth: ms(1),
+    borderRadius: ms(8),
+    padding: AppConfig.paddingL,
+    marginVertical: AppConfig.paddingXL,
   },
   moveButton: {
     padding: AppConfig.paddingL,
