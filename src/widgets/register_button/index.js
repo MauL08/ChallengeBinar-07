@@ -8,21 +8,31 @@ import { setRegister } from '../../data/slices/userSlice';
 import { styles } from './styles';
 import { setLoading } from '../../data/slices/globalSlice';
 
-const RegisterButton = ({ name, email, password, image }) => {
+const RegisterButton = ({ name, email, password, image, phoneNumber }) => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.global);
 
-  const saveUserCredentialsToFirebase = (userName, userID, userImage) => {
-    const reference = database().ref('/users');
-    console.log(reference);
+  const saveUserCredentialsToFirebase = id => {
+    const reference = database().ref(`/users/${id}`);
+    if (image === '') {
+      image =
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQudhbFG-3Q4clb7ryhoT7PoyDHfpde8Ke4w&usqp=CAU';
+    }
+    const content = {
+      bio: '',
+      email,
+      name,
+      id,
+      image,
+      phoneNumber,
+    };
     try {
-      reference.push({
-        name: userName,
-        id: userID,
-        image: userImage,
-      });
+      reference.set(content);
+      dispatch(setRegister(content));
     } catch (err) {
       console.log(err);
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 
@@ -31,16 +41,14 @@ const RegisterButton = ({ name, email, password, image }) => {
     const emailStatus = emailRegEx.test(email);
 
     if (email.length === 0 && password.length === 0) {
-      Alert.alert('Error', 'Empty form, Please fill form correctly!');
+      Alert.alert('Error', 'Please fill form correctly!');
     } else {
       if (emailStatus && password.length >= 8) {
         dispatch(setLoading(true));
         auth()
           .createUserWithEmailAndPassword(email, password)
-          .then(tokenID => {
-            dispatch(setRegister(tokenID));
-            saveUserCredentialsToFirebase(name, tokenID, image);
-            dispatch(setLoading(false));
+          .then(res => {
+            saveUserCredentialsToFirebase(res.user.uid);
           })
           .catch(error => {
             Alert.alert('Error', error.message);

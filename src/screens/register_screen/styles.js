@@ -45,6 +45,13 @@ export const styles = StyleSheet.create({
     borderWidth: ms(1),
     borderRadius: ms(8),
     padding: AppConfig.paddingL,
+    marginTop: AppConfig.paddingXL,
+  },
+  numberInputBar: {
+    width: width - AppConfig.padding2XL,
+    borderWidth: ms(1),
+    borderRadius: ms(8),
+    padding: AppConfig.paddingL,
     marginVertical: AppConfig.paddingXL,
   },
   moveButton: {

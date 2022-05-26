@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 import { styles } from './styles';
 import { setLogin } from '../../data/slices/userSlice';
@@ -12,6 +13,20 @@ const LoginButton = ({ email, password }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.global);
+
+  const getCredentialsFromFirebase = id => {
+    const reference = database().ref(`/users/${id}`);
+    try {
+      reference.on('value', snapshot => {
+        dispatch(setLogin(snapshot.val()));
+      });
+      navigation.navigate('Main');
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
 
   const formChecker = () => {
     const emailRegEx = /[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-z]/;
@@ -25,10 +40,7 @@ const LoginButton = ({ email, password }) => {
         auth()
           .signInWithEmailAndPassword(email, password)
           .then(res => {
-            console.log(res);
-            dispatch(setLogin(res));
-            dispatch(setLoading(false));
-            navigation.navigate('Main');
+            getCredentialsFromFirebase(res.user.uid);
           })
           .catch(error => {
             Alert.alert('Error', error.message);

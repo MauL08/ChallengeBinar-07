@@ -2,8 +2,8 @@ import { View, Image } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { HomeIcon, ChatIcon, GroupIcon } from '../assets';
-import { HomeScreen, ChatScreen, ContactScreen } from '../../screens';
+import { HomeIcon, ContactIcon } from '../assets';
+import { HomeScreen, ContactScreen } from '../../screens';
 
 import { styles, tabBarStyle } from '../../widgets/bottom_navigator/styles';
 
@@ -30,23 +30,12 @@ const MainTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Chat"
-        component={ChatScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View>
-              <Image source={ChatIcon} style={styles.icon(focused)} />
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
         name="Contact"
         component={ContactScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
-              <Image source={GroupIcon} style={styles.icon(focused)} />
+              <Image source={ContactIcon} style={styles.icon(focused)} />
             </View>
           ),
         }}

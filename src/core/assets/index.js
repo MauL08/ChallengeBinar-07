@@ -1,5 +1,6 @@
 import HomeIcon from './icons/home.png';
-import ChatIcon from './icons/chat.png';
-import GroupIcon from './icons/group.png';
+import ContactIcon from './icons/contact.png';
+import CheckIcon from './icons/check.png';
+import BackIcon from './icons/back.png';
 
-export { HomeIcon, ChatIcon, GroupIcon };
+export { HomeIcon, ContactIcon, CheckIcon, BackIcon };

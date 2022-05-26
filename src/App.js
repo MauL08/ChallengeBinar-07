@@ -11,7 +11,6 @@ const App = () => {
     setTimeout(() => {
       SplashScreen.hide();
     }, 2000);
-    // onNotification();
   }, []);
 
   return (

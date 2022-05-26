@@ -3,7 +3,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
 import { navigate } from './navigator';
 
-import { LoginScreen, RegisterScreen, ProfileScreen } from '../../screens';
+import {
+  LoginScreen,
+  RegisterScreen,
+  ProfileScreen,
+  ChatScreen,
+} from '../../screens';
 import MainTabs from './bottom_nav';
 
 const Stack = createNativeStackNavigator();
@@ -12,7 +17,7 @@ const Router = () => {
   const { id } = useSelector(state => state.user);
 
   useEffect(() => {
-    if (id !== '') {
+    if (id !== '' && id !== undefined) {
       navigate('Main');
     }
   }, [id]);
@@ -24,6 +29,7 @@ const Router = () => {
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
       <Stack.Screen name="Main" component={MainTabs} />
+      <Stack.Screen name="Chat" component={ChatScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );

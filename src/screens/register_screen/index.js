@@ -13,6 +13,7 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [image, setImage] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(0);
 
   return (
     <View style={styles.container}>
@@ -40,11 +41,18 @@ const RegisterScreen = () => {
           placeholder="Image URL"
           onChangeText={e => setImage(e)}
         />
+        <TextInput
+          style={styles.numberInputBar}
+          placeholder="Phone Number"
+          onChangeText={e => setPhoneNumber(e)}
+          keyboardType="number-pad"
+        />
         <RegisterButton
           name={name}
           email={email}
           password={password}
           image={image}
+          phoneNumber={phoneNumber}
         />
         <TouchableOpacity
           style={styles.moveButton}
