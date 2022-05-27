@@ -1,4 +1,4 @@
-import { ScrollView, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -13,10 +13,10 @@ const HomeScreen = () => {
     return <ActivityIndicator style={styles.loading} color="green" />;
   } else {
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <ProfileWidget />
         <ChatsWidget />
-      </ScrollView>
+      </View>
     );
   }
 };

@@ -25,6 +25,7 @@ const RegisterButton = ({ name, email, password, image, phoneNumber }) => {
       id,
       image,
       phoneNumber,
+      friends: 0,
     };
     try {
       reference.set(content);
