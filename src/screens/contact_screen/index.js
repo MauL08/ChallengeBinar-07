@@ -48,8 +48,7 @@ const ContactScreen = () => {
   const onChatroomOpen = data => {
     database()
       .ref(`/chatroom/${userInfo.id}/${data.id}`)
-      .once('value')
-      .then(snapshot => {
+      .on('value', snapshot => {
         if (snapshot.val() == null) {
           let roomId = uuid.v4();
 
@@ -59,6 +58,7 @@ const ContactScreen = () => {
             id: userInfo.id,
             name: userInfo.name,
             email: userInfo.email,
+            image: userInfo.image,
             latestMessage: '',
           };
 

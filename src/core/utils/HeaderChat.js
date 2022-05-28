@@ -1,14 +1,27 @@
-//import liraries
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
-// create a component
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import { ms } from 'react-native-size-matters';
+import { BackIcon } from '../assets';
+import { useNavigation } from '@react-navigation/native';
+
 const ChatHeader = props => {
   const { data } = props;
-  // const [lastSeen, setlastSeen] = useState('')
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Image source={BackIcon} style={styles.backIcon} />
+      </TouchableOpacity>
+      <Image source={{ uri: data.image }} style={styles.headerImage} />
       <View style={{ flex: 1, marginLeft: 10 }}>
         <Text
           numberOfLines={1}
@@ -27,11 +40,19 @@ const ChatHeader = props => {
 // define your styles
 const styles = StyleSheet.create({
   container: {
-    height: 70,
+    height: 80,
     backgroundColor: 'green',
     elevation: 5,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  headerImage: {
+    height: ms(50),
+    width: ms(50),
+  },
+  backIcon: {
+    marginHorizontal: ms(10),
+    tintColor: 'white',
   },
 });
 

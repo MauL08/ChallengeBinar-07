@@ -60,7 +60,7 @@ const ProfileScreen = () => {
     <View style={styles.mainContainer}>
       <TouchableOpacity
         style={styles.backIcon}
-        onPress={() => navigation.goBack()}>
+        onPress={() => navigation.navigate('Main')}>
         <Image source={BackIcon} />
       </TouchableOpacity>
       <View style={styles.container}>

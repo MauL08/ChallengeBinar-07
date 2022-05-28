@@ -4,7 +4,6 @@ import {
   FlatList,
   TextInput,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import database from '@react-native-firebase/database';
@@ -30,9 +29,6 @@ const ChatScreen = ({ route }) => {
   }, [friendContent.roomId]);
 
   const onSendMessage = () => {
-    if (message === '') {
-      Alert.alert('Error', 'Type Something');
-    }
     let messageData = {
       roomId: friendContent.roomId,
       message: message,

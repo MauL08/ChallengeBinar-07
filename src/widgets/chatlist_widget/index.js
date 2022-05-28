@@ -25,7 +25,9 @@ const ChatsWidget = () => {
     database()
       .ref(`/chatroom/${id}`)
       .on('value', snapshot => {
-        if (snapshot.val() !== null) {
+        if (snapshot.val() === null) {
+          setAllChat([]);
+        } else {
           setAllChat(Object.values(snapshot.val()));
         }
       });
